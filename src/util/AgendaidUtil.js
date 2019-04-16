@@ -1,4 +1,26 @@
+const day = require('dayjs')
+day.extend(require('dayjs/plugin/weekOfYear'))
+
 module.exports = class AgendaidUtil {
+  /**
+   * Gets the name of the collection to store the reminder for the given time.
+   * If no time parameter is provided, the current time is used for evaluating
+   * the collection name.
+   *
+   * The name is the current year and the week of the year. For example:
+   * "2019.16" for the 16th week of 2019. Or if you provide 1555953586442 as the
+   * time parameter, it'll return "2019.17" since it resolves to April 22, 2019
+   * which is the 17th week of 2019.
+   *
+   * @param {string|Date} [triggerTime] The (optional) trigger time of the reminder you need a collection name for. Defaults to now.
+   *
+   * @returns {string} The name of the collection to be used.
+   */
+  getCollectionName (triggerTime) {
+    if (triggerTime) return `${day(triggerTime).format('YYYY')}.${day(triggerTime).week()}`
+    else return `${day().format('YYYY')}.${day().week()}`
+  }
+
   async parseUserInput (msg, args) {
     const parsedArgs = this.parseArgs(args)
 
