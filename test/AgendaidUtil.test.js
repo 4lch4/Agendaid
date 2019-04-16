@@ -38,7 +38,10 @@ test('getTimeVal() should get the amount of time from the given parameters', () 
 })
 
 test('getReminderMsg() should get the content of the reminder from the message sent by the user', () => {
+  const testStr = 'Go to the store for milk & eggs in 3 days 2 hours and 15 minutes'
+  const testArr = testStr.split(' ')
 
+  expect(util.getReminderMsg(testArr)).toBe('Go to the store for milk & eggs')
 })
 
 test('getTimeArgs() should get the portion of the user provided args that only contains the time data for the reminder', () => {
