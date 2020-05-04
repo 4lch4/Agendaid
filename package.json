@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/HF-Solutions/Agendaid#readme",
   "dependencies": {
-    "agenda": "2.0.2",
+    "agenda": "3.1.0",
     "dayjs": "^1.8.12",
     "mongoose": "5.5.2"
   },
